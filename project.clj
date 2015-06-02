@@ -1,13 +1,17 @@
 (defproject de.otto/tesla-jetty "0.1.0"
             :description "basic microservice."
-            :url "https://github.com/otto-de/tesla-jetty"
+            :url "https://github.com/otto-de/tesla-httpkit"
             :license {:name "Apache License 2.0"
                       :url  "http://www.apache.org/license/LICENSE-2.0.html"}
             :scm {:name "git"
-                  :url  "https://github.com/otto-de/tesla-jetty"}
+                  :url  "https://github.com/otto-de/tesla-httpkit"}
 
             :dependencies [[org.clojure/clojure "1.6.0"]
-                           [ring/ring-jetty-adapter "1.3.2"]]
+                           [http-kit "2.1.18"]
+
+
+
+                           ]
 
             :exclusions [org.clojure/clojure
                          org.slf4j/slf4j-nop
