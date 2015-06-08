@@ -7,11 +7,7 @@
                   :url  "https://github.com/otto-de/tesla-httpkit"}
 
             :dependencies [[org.clojure/clojure "1.6.0"]
-                           [http-kit "2.1.18"]
-
-
-
-                           ]
+                           [http-kit "2.1.18"]]
 
             :exclusions [org.clojure/clojure
                          org.slf4j/slf4j-nop
@@ -19,7 +15,7 @@
                          log4j
                          commons-logging/commons-logging]
 
-            :profiles {:provided {:dependencies [[de.otto/tesla-microservice "0.1.14"]
+            :profiles {:provided {:dependencies [[de.otto/tesla-microservice "0.1.15"]
                                                  [com.stuartsierra/component "0.2.3"]]}
                        :dev      {:dependencies [[javax.servlet/servlet-api "2.5"]
                                                  [org.slf4j/slf4j-api "1.7.12"]
