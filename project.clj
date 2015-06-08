@@ -1,5 +1,5 @@
-(defproject de.otto/tesla-jetty "0.1.0"
-            :description "basic microservice."
+(defproject de.otto/tesla-httpkit "0.1.0"
+            :description "httpkit addon for tesla-microservice."
             :url "https://github.com/otto-de/tesla-httpkit"
             :license {:name "Apache License 2.0"
                       :url  "http://www.apache.org/license/LICENSE-2.0.html"}
