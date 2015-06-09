@@ -1,6 +1,6 @@
 #tesla-jetty
 
-This library provides a component, that adds an embedded httpkit server to [tesla-microservice](https://github.com/otto-de/tesla-mivroservice). 
+This library provides a component, that adds an embedded httpkit server to [tesla-microservice](https://github.com/otto-de/tesla-microservice). 
 
 `[de.otto/tesla-httpkit "0.1.0"]`
 
