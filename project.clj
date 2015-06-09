@@ -7,7 +7,7 @@
                   :url  "https://github.com/otto-de/tesla-httpkit"}
 
             :dependencies [[org.clojure/clojure "1.6.0"]
-                           [http-kit "2.1.18"]]
+                           [http-kit "2.1.19"]]
 
             :exclusions [org.clojure/clojure
                          org.slf4j/slf4j-nop
