@@ -1,4 +1,4 @@
-(defproject de.otto/tesla-httpkit "0.1.0"
+(defproject de.otto/tesla-httpkit "0.1.1"
             :description "httpkit addon for tesla-microservice."
             :url "https://github.com/otto-de/tesla-httpkit"
             :license {:name "Apache License 2.0"
@@ -15,7 +15,7 @@
                          log4j
                          commons-logging/commons-logging]
 
-            :profiles {:provided {:dependencies [[de.otto/tesla-microservice "0.1.15"]
+            :profiles {:provided {:dependencies [[de.otto/tesla-microservice "0.1.18"]
                                                  [com.stuartsierra/component "0.2.3"]]}
                        :dev      {:dependencies [[javax.servlet/servlet-api "2.5"]
                                                  [org.slf4j/slf4j-api "1.7.12"]

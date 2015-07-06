@@ -13,6 +13,7 @@
     (let [port (get-in config [:config :server-port] default-port)
           bind (get-in config [:config :server-bind] "0.0.0.0")
           handlers (handler/handler handler)
+          _ (println "Starting httpkit with port " port " and bind " bind ".")
           server (httpkit/run-server handlers
                                      {:port (Integer. port)
                                       :ip   bind})]
