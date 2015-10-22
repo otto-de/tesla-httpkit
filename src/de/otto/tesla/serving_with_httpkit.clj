@@ -20,7 +20,7 @@
      :thread     (parser-integer-config config :server-thread 4)
      :queue-size (parser-integer-config config :server-queue-size 20000)
      :max-body   (parser-integer-config config :server-max-body 8388608)
-     :max-len    (parser-integer-config config :max-line 4096)
+     :max-len    (parser-integer-config config :server-max-line 4096)
      })
 
 (defrecord HttpkitServer [config handler]

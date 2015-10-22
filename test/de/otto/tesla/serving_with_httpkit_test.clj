@@ -34,8 +34,10 @@
   (is (=(with-httpkit/server-config {}) {:port 3000 :ip "0.0.0.0" :thread 4 :queue-size 20000
                                   :max-body 8388608 :max-len 4096})))
   (testing "override the default value from the config"
-  (is (=(with-httpkit/server-config {:config {:server-thread "5" :server-bind "1.1.1.1"}}) {:port 3000 :ip "1.1.1.1" :thread 5 :queue-size 20000
-                                  :max-body 8388608 :max-len 4096}))))
+  (is (=(with-httpkit/server-config {:config {:server-port "10000" :server-bind "1.1.1.1" :server-thread "9" :server-queue-size "10"
+                                              :server-max-body "1000" :server-max-line "8192"}})
+        {:port 10000 :ip "1.1.1.1" :thread 9 :queue-size 10
+                                  :max-body 1000 :max-len 8192}))))
 
 (deftest server-dependencies
   (with-redefs [httpkit/run-server (fn [_ _] nil)]
