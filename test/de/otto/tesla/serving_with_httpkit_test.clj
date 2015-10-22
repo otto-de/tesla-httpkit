@@ -32,10 +32,10 @@
 (deftest server-config
   (testing "should build up server config parameter with default value for empty config"
   (is (=(with-httpkit/server-config {}) {:port 3000 :ip "0.0.0.0" :thread 4 :queue-size 20000
-                                  :max-body 8388608 :max-len 4192})))
+                                  :max-body 8388608 :max-len 4096})))
   (testing "override the default value from the config"
   (is (=(with-httpkit/server-config {:config {:server-thread "5" :server-bind "1.1.1.1"}}) {:port 3000 :ip "1.1.1.1" :thread 5 :queue-size 20000
-                                  :max-body 8388608 :max-len 4192}))))
+                                  :max-body 8388608 :max-len 4096}))))
 
 (deftest server-dependencies
   (with-redefs [httpkit/run-server (fn [_ _] nil)]
