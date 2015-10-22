@@ -13,6 +13,30 @@
             _ (system/stop started)]
         (is (= true @was-started))))))
 
+(deftest parser-string-config
+  (testing "should parse the config item and return the value"
+    (is (=(with-httpkit/parser-string-config {} :server-thread "0.0.0.0") "0.0.0.0")))
+  (testing "should parse the config item and return the value"
+    (is (=(with-httpkit/parser-string-config {:config {:server-thread "A"}} :server-thread "0.0.0.0") "A"))))
+
+(deftest parser-int-config
+  (testing "should parse the config item and return the value"
+    (is (=(with-httpkit/parser-integer-config {} :server-port 3000) 3000)))
+  (testing "should parse the config item and return the value"
+    (is (=(with-httpkit/parser-integer-config {:config {:server-port "A"}} :server-port 3000) 3000)))
+  (testing "should parse the config item and return the value"
+    (is (=(with-httpkit/parser-integer-config {:config {:server-port 4000}} :server-port 3000) 4000))))
+
+
+
+(deftest server-config
+  (testing "should build up server config parameter with default value for empty config"
+  (is (=(with-httpkit/server-config {}) {:port 3000 :ip "0.0.0.0" :thread 4 :queue-size 20000
+                                  :max-body 8388608 :max-len 4096})))
+  (testing "override the default value from the config"
+  (is (=(with-httpkit/server-config {:config {:server-thread "5" :server-bind "1.1.1.1"}}) {:port 3000 :ip "1.1.1.1" :thread 5 :queue-size 20000
+                                  :max-body 8388608 :max-len 4096}))))
+
 (deftest server-dependencies
   (with-redefs [httpkit/run-server (fn [_ _] nil)]
     (testing "it starts up the server with no extra dependencies"
