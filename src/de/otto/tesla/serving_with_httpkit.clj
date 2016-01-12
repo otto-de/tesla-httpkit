@@ -29,7 +29,7 @@
     (log/info "-> starting httpkit")
     (let [server-config (server-config config)
           handlers (handler/handler handler)
-          _ (log/info "Starting httpkit with port " (server-config :port) " and bind " (server-config :bind) ".")
+          _ (log/info "Starting httpkit with port " (server-config :port) " and bind " (server-config :ip) ".")
           server (httpkit/run-server handlers server-config)]
       (assoc self :httpkit server)))
 
