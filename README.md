@@ -2,7 +2,7 @@
 
 This library provides a component, that adds an embedded httpkit server to [tesla-microservice](https://github.com/otto-de/tesla-microservice). 
 
-`[de.otto/tesla-httpkit "0.1.3"]`
+`[de.otto/tesla-httpkit "0.1.4"]`
 
 [![Build Status](https://travis-ci.org/otto-de/tesla-httpkit.svg)](https://travis-ci.org/otto-de/tesla-httpkit)
 [![Dependencies Status](http://jarkeeper.com/otto-de/tesla-httpkit/status.svg)](http://jarkeeper.com/otto-de/tesla-httpkit)
