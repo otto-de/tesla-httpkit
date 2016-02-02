@@ -2,7 +2,8 @@
   (:require [clojure.test :refer :all]
             [de.otto.tesla.serving-with-httpkit :as with-httpkit]
             [org.httpkit.server :as httpkit]
-            [de.otto.tesla.system :as system]))
+            [de.otto.tesla.system :as system]
+            [com.stuartsierra.component :as component]))
 
 (deftest should-start-up-jetty
   (let [was-started (atom false)]
@@ -54,3 +55,12 @@
               started (system/start system-with-server)
               _ (system/stop started)]
           (is (= #{:config :handler :httpkit :dummy-page} (into #{} (keys (:server started))))))))))
+
+(deftest should-apply-configured-timeout
+  (let [record (atom [])
+        record-params (fn [& args] (swap! record conj args))
+        server (-> (with-httpkit/new-server)
+                   (assoc :config {:config {:httpkit-timeout 12345}})
+                   (assoc :httpkit record-params))]
+    (component/stop server)
+    (is (= [:timeout 12345] (first @record)))))

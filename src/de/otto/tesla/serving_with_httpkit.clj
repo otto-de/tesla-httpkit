@@ -34,9 +34,12 @@
       (assoc self :httpkit server)))
 
   (stop [self]
-    (log/info "<- stopping httpkit")
-    (when-let [server (:httpkit self)]
-      (server))
+    (let [timeout (get-in config [:config :httpkit-timeout] 100)]
+      (if-let [server (:httpkit self)]
+        (do 
+          (log/info "<- stopping httpkit with timeout:" timeout "ms")
+          (server :timeout timeout))
+        (log/info "<- stopping httpkit")))
     self))
 
 (defn new-server [] (map->HttpkitServer {}))
