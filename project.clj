@@ -15,7 +15,7 @@
                          log4j
                          commons-logging/commons-logging]
 
-            :profiles {:provided {:dependencies [[de.otto/tesla-microservice "0.1.26"]
+            :profiles {:provided {:dependencies [[de.otto/tesla-microservice "0.1.32"]
                                                  [com.stuartsierra/component "0.3.1"]]}
                        :dev      {:dependencies [[javax.servlet/servlet-api "2.5"]
                                                  [org.slf4j/slf4j-api "1.7.14"]
