@@ -1,4 +1,4 @@
-(defproject de.otto/tesla-httpkit "0.1.5"
+(defproject de.otto/tesla-httpkit "0.2.0"
             :description "httpkit addon for tesla-microservice."
             :url "https://github.com/otto-de/tesla-httpkit"
             :license {:name "Apache License 2.0"
@@ -7,7 +7,11 @@
                   :url  "https://github.com/otto-de/tesla-httpkit"}
 
             :dependencies [[org.clojure/clojure "1.7.0"]
-                           [http-kit "2.1.19"]]
+                           [http-kit "2.1.19"]
+                           [metrics-clojure-jvm "2.7.0"]]
+
+            :source-paths ["src/clojure"]
+            :java-source-paths ["src/java"]
 
             :exclusions [org.clojure/clojure
                          org.slf4j/slf4j-nop
