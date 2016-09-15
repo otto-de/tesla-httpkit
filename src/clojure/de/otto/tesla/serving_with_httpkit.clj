@@ -3,30 +3,36 @@
             [clojure.tools.logging :as log]
             [de.otto.tesla.httpkit-metrics :as htmetr]
             [de.otto.tesla.stateful.handler :as handler])
-  (:import (org.httpkit.server TeslaRingHandler TeslaHttpServer)))
+  (:import (org.httpkit.server TeslaRingHandler TeslaHttpServer ProxyProtocolOption)))
 
-(defn parser-string-config [config element default-value]
+(defn get-config [config element default-value]
   (get-in config [:config element] default-value))
 
 (defn parser-integer-config [config element default-value]
   (try
-    (Integer. (parser-string-config config element default-value))
+    (Integer. (get-config config element default-value))
     (catch NumberFormatException e default-value)))
 
 (defn server-config [config]
   {:port               (parser-integer-config config :server-port 3000)
-   :ip                 (parser-string-config config :server-bind "0.0.0.0")
+   :ip                 (get-config config :server-bind "0.0.0.0")
    :thread             (parser-integer-config config :server-thread 4)
    :queue-size         (parser-integer-config config :server-queue-size 20000)
    :max-body           (parser-integer-config config :server-max-body 8388608)
    :max-line           (parser-integer-config config :server-max-line 4096)
    :max-ws             (parser-integer-config config :server-max-ws 4194304)
-   :worker-name-prefix (parser-string-config config :worker-name-prefix "tesla-httpkit-worker-")})
+   :worker-name-prefix (get-config config :worker-name-prefix "tesla-httpkit-worker-")
+   :proxy-protocol     (get-config config :proxy-protocol :disable)
+   })
 
-(defn run-server [handler {:keys [port ip thread queue-size max-body max-line max-ws worker-name-prefix]}]
+(defn run-server [handler {:keys [port proxy-protocol ip thread queue-size max-body max-line max-ws worker-name-prefix]}]
   (log/info "Starting httpkit with port " port " and bind " ip ".")
   (let [handler (TeslaRingHandler. thread handler worker-name-prefix queue-size)
-        server (TeslaHttpServer. ip port handler max-body max-line max-ws)]
+        proxy-enum (case proxy-protocol
+                     :enable ProxyProtocolOption/ENABLED
+                     :disable ProxyProtocolOption/DISABLED
+                     :optional ProxyProtocolOption/OPTIONAL)
+        server (TeslaHttpServer. ip port handler max-body max-line max-ws proxy-enum)]
     (.start server)
     server))
 

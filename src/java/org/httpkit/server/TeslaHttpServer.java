@@ -6,9 +6,9 @@ public class TeslaHttpServer extends HttpServer {
 
     private TeslaRingHandler teslaHandler;
 
-    public TeslaHttpServer(String ip, int port, TeslaRingHandler handler, int maxBody, int maxLine, int maxWs) throws IOException {
-        super(ip, port, handler, maxBody, maxLine, maxWs);
-        this.teslaHandler = handler;
+    public TeslaHttpServer(String ip, int port, IHandler handler, int maxBody, int maxLine, int maxWs, ProxyProtocolOption proxyProtocolOption) throws IOException {
+        super(ip, port, handler, maxBody, maxLine, maxWs, proxyProtocolOption);
+        this.teslaHandler = (TeslaRingHandler) handler;
     }
 
     public TeslaRingHandler getHandler() {

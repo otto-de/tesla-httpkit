@@ -19,9 +19,9 @@
 
 (deftest parser-string-config
   (testing "should parse the config item and return the value"
-    (is (= (with-httpkit/parser-string-config {} :server-thread "0.0.0.0") "0.0.0.0")))
+    (is (= (with-httpkit/get-config {} :server-thread "0.0.0.0") "0.0.0.0")))
   (testing "should parse the config item and return the value"
-    (is (= (with-httpkit/parser-string-config {:config {:server-thread "A"}} :server-thread "0.0.0.0") "A"))))
+    (is (= (with-httpkit/get-config {:config {:server-thread "A"}} :server-thread "0.0.0.0") "A"))))
 
 (deftest parser-int-config
   (testing "should parse the config item and return the value"
@@ -41,7 +41,8 @@
             :max-body           8388608
             :max-line           4096
             :max-ws             4194304
-            :worker-name-prefix "tesla-httpkit-worker-"}
+            :worker-name-prefix "tesla-httpkit-worker-"
+            :proxy-protocol :disable}
            (with-httpkit/server-config {}))))
   (testing "override the default value from the config"
     (is (= {:port               10000
@@ -51,13 +52,15 @@
             :max-body           1000
             :max-line           8192
             :max-ws             4194304
-            :worker-name-prefix "tesla-httpkit-worker-"}
+            :worker-name-prefix "tesla-httpkit-worker-"
+            :proxy-protocol :enable}
            (with-httpkit/server-config {:config {:server-port       "10000"
                                                  :server-bind       "1.1.1.1"
                                                  :server-thread     "9"
                                                  :server-queue-size "10"
                                                  :server-max-body   "1000"
-                                                 :server-max-line   "8192"}})))))
+                                                 :server-max-line   "8192"
+                                                 :proxy-protocol :enable}})))))
 
 (deftest server-dependencies
   (with-redefs [httpkit/run-server (fn [_ _] nil)]
