@@ -6,7 +6,7 @@
             :scm {:name "git"
                   :url  "https://github.com/otto-de/tesla-httpkit"}
 
-            :dependencies [[org.clojure/clojure "1.7.0"]
+            :dependencies [[org.clojure/clojure "1.8.0"]
                            [http-kit "2.2.0"]
                            [metrics-clojure-jvm "2.7.0"]]
 
@@ -19,12 +19,12 @@
                          log4j
                          commons-logging/commons-logging]
 
-            :profiles {:provided {:dependencies [[de.otto/tesla-microservice "0.1.32"]
+            :profiles {:provided {:dependencies [[de.otto/tesla-microservice "0.3.36"]
                                                  [com.stuartsierra/component "0.3.1"]]}
                        :dev      {:dependencies [[javax.servlet/servlet-api "2.5"]
-                                                 [org.slf4j/slf4j-api "1.7.14"]
-                                                 [ch.qos.logback/logback-core "1.1.3"]
-                                                 [ch.qos.logback/logback-classic "1.1.3"]
+                                                 [org.slf4j/slf4j-api "1.7.21"]
+                                                 [ch.qos.logback/logback-core "1.1.7"]
+                                                 [ch.qos.logback/logback-classic "1.1.7"]
                                                  [ring-mock "0.1.5"]]
-                                  :plugins      [[lein-ancient "0.5.4"]]}}
+                                  :plugins      [[lein-ancient "0.6.10"]]}}
             :test-paths ["test" "test-resources"])
