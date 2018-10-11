@@ -7,7 +7,7 @@
                   :url  "https://github.com/otto-de/tesla-httpkit"}
 
             :dependencies [[org.clojure/clojure "1.8.0"]
-                           [http-kit "2.2.0"]
+                           [http-kit "2.3.0"]
                            [metrics-clojure-jvm "2.8.0"]]
 
             :source-paths ["src/clojure"]
