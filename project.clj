@@ -1,4 +1,4 @@
-(defproject de.otto/tesla-httpkit "1.0.2"
+(defproject de.otto/tesla-httpkit "1.0.3-SNAPSHOT"
             :description "httpkit addon for tesla-microservice."
             :url "https://github.com/otto-de/tesla-httpkit"
             :license {:name "Apache License 2.0"
